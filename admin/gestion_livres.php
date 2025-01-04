@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <?php include('admin_nav.php') ?> 
 <section id="livres">
             <h2>Gestion des Livres</h2>
@@ -44,7 +44,6 @@
                             <a class="delete">Supprimer</a>
                         </td>
                     </tr>
-                    <!-- Ajoutez plus de lignes ici -->
                 </tbody>
             </table>
             <a class="add" href="insert_livres.php">Ajouter un Livre</a>

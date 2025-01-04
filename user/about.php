@@ -3,7 +3,6 @@
     <link rel="stylesheet" href="../css/about.css">
  <?php include('../includes/nav.php')?>
 
-    <!-- Section FAQ -->
     <section class="faq-section">
         <div class="container">
             <h1 class="faq-title">Frequently Asked Questions</h1>
@@ -65,7 +64,6 @@
                 const answer = this.nextElementSibling;
                 const icon = this.querySelector('i');
 
-                // Basculer l'affichage de la réponse
                 if (answer.style.display === 'block') {
                     answer.style.display = 'none';
                     icon.classList.remove('fa-chevron-up');

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <?php include('admin_nav.php')?>
-<link rel="stylesheet" href="../css/insert.css"> <!-- Lien vers votre fichier CSS -->
-
+<link rel="stylesheet" href="../css/insert.css"> 
     <main>
         <section>
             <h2>Ajouter une categorie</h2>

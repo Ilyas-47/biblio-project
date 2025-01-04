@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <?php include('admin_nav.php')?>
-<link rel="stylesheet" href="../css/insert.css"> <!-- Lien vers votre fichier CSS -->
-
+<link rel="stylesheet" href="../css/insert.css"> 
     <main>
         <section>
             <h2>Ajouter un utilisateur</h2>
@@ -18,13 +17,17 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="annee">date d'inscription:</label>
-                    <input type="number" id="annee" name="annee" required>
+                    <label for="password">Mot de passe:</label>
+                    <input type="password" id="password" name="password" required>
                 </div>
 
                 <div class="form-group">
                     <label for="Role">Role:</label>
-                    <input type="text" id="Role" name="Role" required>
+                    <select class="form-group" id="Role" name="Role" required>
+                        <option value="">Sélectionnez un role</option>
+                        <option value="role 1">role 1</option>
+                        <option value="role 2">role 2</option>
+                    </select>
                 </div>
 
                 <button type="submit" class="add">Ajouter l'utilisateur</button>

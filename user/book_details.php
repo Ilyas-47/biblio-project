@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
     <?php include('../includes/nav.php')?>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap" rel="stylesheet"/>
@@ -150,8 +150,8 @@
                                   <span class="price">$100</span>
                                 </div>
                             
-        </div> <!-- row -->
-    </div> <!-- container-fluid, tm-container-content -->
+        </div>
+    </div> 
 
     <?php include('../includes/footer.php')?>
     <script>

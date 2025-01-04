@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="fr">
-<?php include('admin_nav.php')?>
-<link rel="stylesheet" href="../css/insert.css"> <!-- Lien vers votre fichier CSS -->
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajouter un livre</title>
+    <link rel="stylesheet" href="../css/insert.css"> 
+<body>
+    <?php include('admin_nav.php'); ?> 
     <main>
         <section>
             <h2>Ajouter un livre</h2>
@@ -14,22 +18,36 @@
 
                 <div class="form-group">
                     <label for="auteur">Auteur:</label>
-                    <input type="text" id="auteur" name="auteur" required>
+                    <select class="form-group" id="auteur" name="auteur" required>
+                        <option value="">Sélectionnez un auteur</option>
+                        <option value="Auteur 1">Auteur 1</option>
+                        <option value="Auteur 2">Auteur 2</option>
+                        <option value="Auteur 3">Auteur 3</option>
+                    </select> 
                 </div>
 
                 <div class="form-group">
-                    <label for="annee">Année de publication:</label>
-                    <input type="number" id="annee" name="annee" required>
+                    <label for="Categorie">Categorie:</label>
+                    <select class="form-group" id="Categorie" name="Categorie" required>
+                        <option value="">Sélectionnez une categorie</option>
+                        <option value="Categorie 1">Categorie 1</option>
+                        <option value="Categorie 2">Categorie 2</option>
+                        <option value="Categorie 3">Categorie 3</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="genre">Genre:</label>
-                    <input type="text" id="genre" name="genre" required>
+                    <label for="Disponibilite">Disponibilite:</label>
+                    <select class="form-group" id="Disponibilite" name="Disponibilite" required>
+                        <option value="Disponibilite 1">Disponibilite 1</option>
+                        <option value="Disponibilite 2">Disponibilite 2</option>
+                        <option value="Disponibilite 3">Disponibilite 3</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="resume">Résumé:</label>
-                    <textarea id="resume" name="resume" rows="4" required></textarea>
+                    <label for="Description">Description:</label>
+                    <textarea id="Description" name="Description" rows="4" required></textarea>
                 </div>
 
                 <button type="submit" class="add">Ajouter le livre</button>

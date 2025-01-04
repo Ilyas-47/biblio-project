@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <?php include('../includes/nav.php')?>
     <div class="tm-hero d-flex justify-content-center align-items-center" id="tm-video-container">
         <video autoplay muted loop id="tm-video">
@@ -71,7 +71,7 @@
                                                   <span class="title">Cool Chair</span>
                                                   <span class="price">$100</span>
                                                 </div>         
-        </div> <!-- row -->
+        </div> 
         <div class="row tm-mb-90">
             <div class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
                 <a href="javascript:void(0);" class="btn btn-primary tm-btn-prev mb-2 disabled">Previous</a>
@@ -84,7 +84,7 @@
                 <a href="javascript:void(0);" class="btn btn-primary tm-btn-next">Next Page</a>
             </div>            
         </div>
-    </div> <!-- container-fluid, tm-container-content -->
+    </div>
 
     <?php include('../includes/footer.php')?>
     <script src="../js/plugins.js"></script>
@@ -94,7 +94,6 @@
         });
 
         $(function(){
-            /************** Video background *********/
 
             function setVideoSize() {
                 const vidWidth = 1280;
@@ -129,14 +128,12 @@
 
             setVideoSize();
 
-            // Set video background size based on window size
             let timeout;
             window.onresize = function () {
                 clearTimeout(timeout);
                 timeout = setTimeout(setVideoSize, 100);
             };
 
-            // Play/Pause button for video background      
             const btn = $("#tm-video-control-button");
 
             btn.on("click", function (e) {

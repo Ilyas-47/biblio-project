@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <?php include('admin_nav.php') ?> 
 <section id="utilisateurs">
             <h2>Gestion des Utilisateurs</h2>
@@ -37,7 +37,6 @@
                             <a href="" class="delete">Supprimer</a>
                         </td>
                     </tr>
-                    <!-- Ajoutez plus de lignes ici -->
                 </tbody>
             </table>
             <a href="insert_users.php" class="add">Ajouter un Utilisateur</a>

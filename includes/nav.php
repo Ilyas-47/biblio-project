@@ -11,7 +11,6 @@
 
 </head>
 <body>
-    <!-- Page Loader -->
     <div id="loader-wrapper">
         <div id="loader"></div>
 
@@ -21,15 +20,12 @@
     </div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <!-- Logo et Nom -->
             <a class="navbar-brand mx-auto" href="acc.php">
                 <i class="fas fa-book"></i> BookBazaar
             </a>
-            <!-- Bouton pour le menu mobile -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
-            <!-- Menu -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mx-auto mb-2 mb-lg-0 text-center">
                     <li class="nav-item">
@@ -53,7 +49,6 @@
                         <a class="nav-link" id="nav" href="about.php">FAQ</a>
                     </li>
                 </ul>
-                <!-- Bouton Login -->
                 <div class="d-flex">
                     <a class="btn btn-primary ml-auto" href="sign_up.php">S'inscrire</a>
                 </div>

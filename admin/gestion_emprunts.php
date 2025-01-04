@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <?php include('admin_nav.php') ?> 
 <section id="emprunts">
             <h2>Gestion des Emprunts</h2>

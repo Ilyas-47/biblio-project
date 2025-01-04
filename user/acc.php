@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <?php include('../includes/nav.php')?>
     <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="../img/nav.jpg">
         <form class="d-flex tm-search-form">
@@ -48,8 +48,8 @@
                                   <span class="price">$100</span>
                                 </div>
                             
-        </div> <!-- row -->
-    </div> <!-- container-fluid, tm-container-content -->
+        </div> 
+    </div> 
 
     <div class="description">
       <h3>Lorem ipsum dolor sit amet.</h3>
@@ -94,8 +94,8 @@
 
                
                             
-        </div> <!-- row -->
-    </div> <!-- container-fluid, tm-container-content -->
+        </div>
+    </div> 
     <?php include('../includes/footer.php')?> 
 </body>
 </html>
