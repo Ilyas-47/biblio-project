@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <link rel="stylesheet" href="css/about.css">
- <?php include('includes/nav.php')?>
+    <link rel="stylesheet" href="../css/about.css">
+ <?php include('../includes/nav.php')?>
 
     <!-- Section FAQ -->
     <section class="faq-section">
@@ -55,7 +55,7 @@
         </div>
     </section>
 </body>
-<?php include('includes/footer.php')?>
+<?php include('../includes/footer.php')?>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const faqQuestions = document.querySelectorAll('.faq-question');

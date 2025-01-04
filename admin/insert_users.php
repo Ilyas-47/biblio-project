@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <?php include('admin_nav.php')?>
-<link rel="stylesheet" href="../css/insert_livres.css"> <!-- Lien vers votre fichier CSS -->
+<link rel="stylesheet" href="../css/insert.css"> <!-- Lien vers votre fichier CSS -->
 
     <main>
         <section>

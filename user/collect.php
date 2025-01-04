@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-  <?php include('includes/nav.php')?>
+  <?php include('../includes/nav.php')?>
     <div class="tm-hero d-flex justify-content-center align-items-center" id="tm-video-container">
         <video autoplay muted loop id="tm-video">
-            <source src="video/140807-776043760_small.mp4" type="video/mp4">
+            <source src="../video/140807-776043760_small.mp4" type="video/mp4">
         </video>  
         <i id="tm-video-control-button" class="fas fa-pause"></i>
         <form class="d-flex position-absolute tm-search-form">
@@ -86,8 +86,8 @@
         </div>
     </div> <!-- container-fluid, tm-container-content -->
 
-    <?php include('includes/footer.php')?>
-    <script src="js/plugins.js"></script>
+    <?php include('../includes/footer.php')?>
+    <script src="../js/plugins.js"></script>
     <script>
         $(window).on("load", function() {
             $('body').addClass('loaded');

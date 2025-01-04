@@ -41,7 +41,7 @@
     </footer>
     
     
-    <script src="js/plugins.js"></script>
+    <script src="../js/plugins.js"></script>
     <script>
         $(window).on("load", function() {
             $('body').addClass('loaded');

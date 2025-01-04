@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-<?php include('includes/nav.php')?>
+<?php include('../includes/nav.php')?>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -86,6 +86,6 @@
     </div>
 
 </body>
-<?php include('includes/footer.php')?>
+<?php include('../includes/footer.php')?>
 
 </html>
