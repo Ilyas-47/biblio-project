@@ -28,7 +28,7 @@
                         <td>Disponible</td>
                         <td>22-02-2024</td>
                         <td>
-                            <a class="edit">Modifier</a>
+                            <a href="livers_modification.php" class="edit">Modifier</a>
                             <a class="delete">Supprimer</a>
                         </td>
                     </tr>
@@ -40,13 +40,13 @@
                         <td>Emprunté</td>
                         <td>22-02-2024</td>
                         <td>
-                            <a class="edit">Modifier</a>
+                            <a href="livers_modification.php" class="edit">Modifier</a>
                             <a class="delete">Supprimer</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <a class="add" href="insert_livres.php">Ajouter un Livre</a>
+            <a class="add" href="insert_livres.php">Ajouter le livre</a>
         </section>
         </main>
 

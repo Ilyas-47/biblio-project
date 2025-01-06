@@ -22,7 +22,7 @@
                         <td>22-1-2024</td>
                         <td>Admin</td>
                         <td>
-                            <a href="" class="edit">Modifier</a>
+                            <a href="user_modification.php" class="edit">Modifier</a>
                             <a href="" class="delete">Supprimer</a>
                         </td>
                     </tr>
@@ -33,7 +33,7 @@
                         <td>10-1-2024</td>
                         <td>Utilisateur</td>
                         <td>
-                            <a href="" class="edit">Modifier</a>
+                            <a href="user_modification.php"  class="edit">Modifier</a>
                             <a href="" class="delete">Supprimer</a>
                         </td>
                     </tr>

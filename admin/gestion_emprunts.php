@@ -24,7 +24,7 @@
                         <td>2023-10-15</td>
                         <td>retourne</td>
                         <td>
-                            <a class="edit">Modifier</a>
+                            <a href="emprunt_modification.php" class="edit">Modifier</a>
                         </td>
                      </tr>
                      <tr>
@@ -35,7 +35,7 @@
                         <td>2023-10-15</td>
                         <td>retourne</td>
                         <td>
-                            <a class="edit">Modifier</a>
+                            <a href="emprunt_modification.php" class="edit">Modifier</a>
                         </td>
                      </tr>
 </section>

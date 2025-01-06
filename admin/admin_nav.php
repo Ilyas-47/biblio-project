@@ -16,6 +16,7 @@
       <li><a href="gestion_users.php"> Gestion des utilisateurs</a></li>
       <li><a href="gestion_emprunts.php"> Gestion des Emprunts</a></li>
       <li><a href="gestion_livres.php"></i> Gestion des Livres</a></li>
+      <li><a href="gestion_inserts.php">auteur/catego</a></li>
       <li><a href="inserts.php"></i> Insertion</a></li>
     </ul>
     <div class="profile">
