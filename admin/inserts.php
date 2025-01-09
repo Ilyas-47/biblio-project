@@ -7,7 +7,7 @@
     <main>
         <section>
             <h2>Ajouter une categorie</h2>
-            <form action="insert_catego.php" method="POST">
+            <form action="insert_catego_db.php" method="POST">
                 <div class="form-group">
                     <label for="categorie">Nom categorie:</label>
                     <input type="text" id="categorie" name="categorie" required>
@@ -17,7 +17,7 @@
         </section>
      <section>
         <h2>Ajouter un auteur</h2>
-            <form action="insert_aut.php" method="POST">
+            <form action="insert_aut_db.php" method="POST">
                 <div class="form-group">
                     <label for="auteur">Nom d'auteur:</label>
                     <input type="text" id="auteur" name="auteur" required>

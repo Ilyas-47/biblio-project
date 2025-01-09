@@ -1,3 +1,15 @@
+<?php 
+require_once('../connection/connection.php');
+$req1 = $pdo->query("SHOW COLUMNS FROM utilisateurs LIKE 'role'");
+$column = $req1->fetch(PDO::FETCH_ASSOC);
+
+if ($column) {
+    preg_match("/^enum\('(.*)'\)$/", $column['Type'], $matches);
+    $roles = explode("','", $matches[1]);
+} else {
+    $roles = []; 
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <?php include('admin_nav.php')?>
@@ -25,8 +37,9 @@
                     <label for="Role">Role:</label>
                     <select class="form-group" id="Role" name="Role" required>
                         <option value="">Sélectionnez un role</option>
-                        <option value="role 1">role 1</option>
-                        <option value="role 2">role 2</option>
+                      <?php  foreach ($roles as $role) {
+                echo "<option value=\"$role\">$role</option>";
+                     }?>                    
                     </select>
                 </div>
 

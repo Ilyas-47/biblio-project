@@ -1,3 +1,25 @@
+<?php
+require_once('../connection/connection.php');
+
+$req1 = $pdo->prepare("SELECT * FROM auteur");
+$req1->execute();
+$auteurs = $req1->fetchAll(PDO::FETCH_ASSOC);
+
+$req2 = $pdo->prepare("SELECT * FROM categories");
+$req2->execute();
+$categories = $req2->fetchAll(PDO::FETCH_ASSOC);
+
+$req3 = $pdo->query("SHOW COLUMNS FROM livres LIKE 'disponibilite'");
+$column = $req3->fetch(PDO::FETCH_ASSOC);
+
+if ($column) {
+    preg_match("/^enum\('(.*)'\)$/", $column['Type'], $matches);
+    $disponibilites = explode("','", $matches[1]);
+} else {
+    $disponibilites = []; 
+}
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,7 +32,7 @@
     <main>
         <section>
             <h2>Ajouter un livre</h2>
-            <form action="ajouter_livre.php" method="POST">
+            <form action="insert_livr_db.php" method="POST">
                 <div class="form-group">
                     <label for="titre">Titre du livre:</label>
                     <input type="text" id="titre" name="titre" required>
@@ -20,9 +42,9 @@
                     <label for="auteur">Auteur:</label>
                     <select class="form-group" id="auteur" name="auteur" required>
                         <option value="">Sélectionnez un auteur</option>
-                        <option value="Auteur 1">Auteur 1</option>
-                        <option value="Auteur 2">Auteur 2</option>
-                        <option value="Auteur 3">Auteur 3</option>
+                        <?php foreach ($auteurs as $auteur) { ?>
+                            <option value="<?php $auteur['id_auteur']; ?>"><?php echo $auteur['nom_auteur']; ?></option>
+                        <?php } ?>
                     </select> 
                 </div>
 
@@ -30,20 +52,22 @@
                     <label for="Categorie">Categorie:</label>
                     <select class="form-group" id="Categorie" name="Categorie" required>
                         <option value="">Sélectionnez une categorie</option>
-                        <option value="Categorie 1">Categorie 1</option>
-                        <option value="Categorie 2">Categorie 2</option>
-                        <option value="Categorie 3">Categorie 3</option>
+                        <?php foreach ($categories as $categorie) { ?>
+                            <option value="<?php $categorie['id_categorie'] ?>"><?php echo $categorie['nom_categorie']; ?></option>
+                        <?php } ?>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="Disponibilite">Disponibilite:</label>
                     <select class="form-group" id="Disponibilite" name="Disponibilite" required>
-                        <option value="Disponibilite 1">Disponibilite 1</option>
-                        <option value="Disponibilite 2">Disponibilite 2</option>
-                        <option value="Disponibilite 3">Disponibilite 3</option>
+                    <?php
+            foreach ($disponibilites as $disponibilite) {
+                echo "<option value=\"$disponibilite\">$disponibilite</option>";
+                     }?>
                     </select>
                 </div>
+
 
                 <div class="form-group">
                     <label for="Description">Description:</label>
