@@ -1,3 +1,17 @@
+<?php
+require_once('../connection/connection.php');
+
+// Retrieve user data based on ID
+$userId = $_GET['id_auteur'];
+$req = $pdo->prepare("SELECT * FROM auteur WHERE id_auteur = :id_auteur");
+$req->execute(['id_auteur' => $userId]); 
+$userData = $req->fetch();
+
+if ($userData === false) {
+    echo "<p>Auteur non trouvé.</p>";
+    exit; // Stop further execution if no data is found
+}
+?> 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -10,15 +24,16 @@
     <main>
         <section>
             <h2>Modifier un auteur</h2>
-            <form action="ajouter_livre.php" method="POST">
+            <form action="modification_auteur.php" method="POST">
+            <input type="hidden"  name="id_auteur" value="<?php echo htmlspecialchars($userData['id_auteur'])?>" readonly>
                 <div class="form-group">
                     <label for="titre">auteur:</label>
-                    <input type="text" id="titre" name="titre" required>
+                    <input type="text" id="titre" name="nom_auteur" value="<?php echo $userData['nom_auteur']?>" required>
                 </div>
 
                 <div class="form-group">
-                    <label for="Description">Description:</label>
-                    <textarea id="Description" name="Description" rows="4" required></textarea>
+                    <label for="description">Description:</label>
+                    <textarea id="description" name="description" rows="4" required><?php echo $userData['description']?></textarea>
                 </div>
 
                 <button type="submit" class="add" onclick="return confirm('Vous confirmez ces modification ?')">Modifier</button>
