@@ -8,7 +8,24 @@
     <link rel="stylesheet" href="../fontawesome/css/all.min.css">
     <link rel="stylesheet" href="../css/templatemo-style.css">
     <link rel="stylesheet" href="../css/style.css">    
+    <style>
+        .profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    }
 
+    .ml-2 {
+        margin-left: 8px;
+    }
+
+    .user-name {
+        font-weight: normal;    
+        color: black;
+    }
+
+    </style>
 </head>
 <body>
     <div id="loader-wrapper">
@@ -35,13 +52,13 @@
                         <a class="nav-link" id="nav" href="collect.php">Nos Collections</a>
                     </li>
                     <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" id="nav" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <a class="dropdown-item" href="#">Catégorie 1</a>
-        <a class="dropdown-item" href="#">Catégorie 2</a>
-        <a class="dropdown-item" href="#">Catégorie 3</a>
-    </div>
-</li>
+                        <a class="nav-link dropdown-toggle" id="nav" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Catégorie 1</a>
+                            <a class="dropdown-item" href="#">Catégorie 2</a>
+                            <a class="dropdown-item" href="#">Catégorie 3</a>
+                        </div>
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" id="nav" href="contact.php">Contactez-nous</a>
                     </li>
@@ -49,9 +66,23 @@
                         <a class="nav-link" id="nav" href="about.php">FAQ</a>
                     </li>
                 </ul>
-                <div class="d-flex">
-                    <a class="btn btn-primary ml-auto" href="sign_up.php">S'inscrire</a>
+                <div class="d-flex align-items-center">
+    <?php
+    session_start();
+    if (isset($_SESSION['user_email'])) {
+        $user_image = isset($_SESSION['user_image']) ? $_SESSION['user_image'] : '../images/user.jpg';
+        $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'User';
+        echo '<a href="profile.php" class="d-flex align-items-center"><img src="' . $user_image . '" alt="Profile" class="profile-img"><span class="user-name ml-2">' . htmlspecialchars($user_name) . '</span></a>';
+    } else {
+        echo '<a class="btn btn-primary ml-auto small-btn" href="sign_up.php">S\'inscrire</a>';
+    }
+    ?>
+</div>
+
+
+
                 </div>
+
             </div>
         </div>
     </nav>
