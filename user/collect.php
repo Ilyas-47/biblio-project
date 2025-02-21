@@ -1,5 +1,86 @@
+<?php
+require_once('../connection/connection.php');
+
+$booksPerPage = 8;
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$start = ($page - 1) * $booksPerPage;
+
+$id_categorie = isset($_GET['id_categorie']) ? intval($_GET['id_categorie']) : 0;
+
+try {
+    if ($id_categorie) {
+        $req = $pdo->prepare("SELECT COUNT(*) FROM livres WHERE id_categorie = :id_categorie");
+        $req->bindParam(':id_categorie', $id_categorie, PDO::PARAM_INT);
+    } else {
+        $req = $pdo->prepare("SELECT COUNT(*) FROM livres");
+    }
+    $req->execute();
+    $totalBooks = $req->fetchColumn();
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+
+$totalPages = ceil($totalBooks / $booksPerPage);
+
+try {
+    if ($id_categorie) {
+        $req = $pdo->prepare("SELECT * FROM livres WHERE id_categorie = :id_categorie LIMIT :start, :booksPerPage");
+        $req->bindParam(':id_categorie', $id_categorie, PDO::PARAM_INT);
+    } else {
+        $req = $pdo->prepare("SELECT * FROM livres LIMIT :start, :booksPerPage");
+    }
+    $req->bindValue(':start', $start, PDO::PARAM_INT);
+    $req->bindValue(':booksPerPage', $booksPerPage, PDO::PARAM_INT);
+    $req->execute();
+    $books = $req->fetchAll();
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+
+if (empty($books)) {
+    echo "No books found.";
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Books</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card {
+            flex: 1 0 21%;
+            box-sizing: border-box;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .pagination a, .pagination span {
+            margin: 0 5px;
+            padding: 8px 16px;
+            background-color: teal;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .pagination a.active, .pagination span.active {
+            background-color: darkslategray;
+        }
+        .pagination a:hover {
+            background-color: darkslategray;
+        }
+    </style>
+</head>
+<body>
   <?php include('../includes/nav.php')?>
     <div class="tm-hero d-flex justify-content-center align-items-center" id="tm-video-container">
         <video autoplay muted loop id="tm-video">
@@ -16,139 +97,45 @@
 
     <div class="container-fluid tm-container-content tm-mt-60">
         <div class="row mb-4">
-            <h2 class="col-6 tm-text-primary">
-            All books
-            </h2>
+            <h2 class="col-6 tm-text-primary">All books</h2>
             <div class="col-6 d-flex justify-content-end align-items-center">
                 <form action="" class="tm-text-primary">
-                    Page <input type="text" value="1" size="1" class="tm-input-paging tm-text-primary"> of 180
+                    Page <input type="text" value="<?php echo $page; ?>" size="1" class="tm-input-paging tm-text-primary"> of <?php echo $totalPages; ?>
                 </form>
             </div>
         </div>
-        <div class="row tm-mb-90 tm-gallery">
-            <div class="card">
-                <div class="image"><span class="text">This is a chair.</span></div>
-                  <span class="title">Cool Chair</span>
-                  <span class="price">$100</span>
-                </div>
+        <div class="cards">
+        <?php foreach ($books as $book) { ?>
+            <a href="book_details.php?id=<?php echo $book['id_livre']; ?>"> 
                 <div class="card">
-                    <div class="image"><span class="text">This is a chair.</span></div>
-                      <span class="title">Cool Chair</span>
-                      <span class="price">$100</span>
-                    </div>
-                    <div class="card">
-                        <div class="image"><span class="text">This is a chair.</span></div>
-                          <span class="title">Cool Chair</span>
-                          <span class="price">$100</span>
-                        </div>
-                        <div class="card">
-                            <div class="image"><span class="text">This is a chair.</span></div>
-                              <span class="title">Cool Chair</span>
-                              <span class="price">$100</span>
-                            </div>
-                            <div class="card">
-                                <div class="image"><span class="text">This is a chair.</span></div>
-                                  <span class="title">Cool Chair</span>
-                                  <span class="price">$100</span>
-                                </div>
-                                <div class="card">
-                                    <div class="image"><span class="text">This is a chair.</span></div>
-                                      <span class="title">Cool Chair</span>
-                                      <span class="price">$100</span>
-                                    </div>
-                                    <div class="card">
-                                        <div class="image"><span class="text">This is a chair.</span></div>
-                                          <span class="title">Cool Chair</span>
-                                          <span class="price">$100</span>
-                                        </div>
-                                        <div class="card">
-                                            <div class="image"><span class="text">This is a chair.</span></div>
-                                              <span class="title">Cool Chair</span>
-                                              <span class="price">$100</span>
-                                            </div>
-                                            <div class="card">
-                                                <div class="image"><span class="text">This is a chair.</span></div>
-                                                  <span class="title">Cool Chair</span>
-                                                  <span class="price">$100</span>
-                                                </div>         
-        </div> 
-        <div class="row tm-mb-90">
-            <div class="col-12 d-flex justify-content-between align-items-center tm-paging-col">
-                <a href="javascript:void(0);" class="btn btn-primary tm-btn-prev mb-2 disabled">Previous</a>
-                <div class="tm-paging d-flex">
-                    <a href="javascript:void(0);" class="active tm-paging-link">1</a>
-                    <a href="javascript:void(0);" class="tm-paging-link">2</a>
-                    <a href="javascript:void(0);" class="tm-paging-link">3</a>
-                    <a href="javascript:void(0);" class="tm-paging-link">4</a>
+                    <img class="card_img" src="../images/<?php echo $book['image']; ?>" alt="<?php echo $book['titre']; ?>">
+                    <p class="tip"><?php echo $book['titre']; ?></p>
                 </div>
-                <a href="javascript:void(0);" class="btn btn-primary tm-btn-next">Next Page</a>
-            </div>            
+            </a>
+        <?php } ?>
         </div>
-    </div>
+        <div class="pagination">
+    <?php if ($page > 1): ?>
+        <a href="?page=<?php echo $page - 1; ?>">Précédent</a>
+    <?php else: ?>
+        <span>Précédent</span>
+    <?php endif; ?>
+    
+    <?php for ($i = max(1, $page - 1); $i <= min($totalPages, $page + 1); $i++): ?>
+        <a href="?page=<?php echo $i; ?>" class="<?php if($i == $page) echo 'active'; ?>"><?php echo $i; ?></a>
+    <?php endfor; ?>
+    
+    <?php if ($page < $totalPages): ?>
+        <a href="?page=<?php echo $page + 1; ?>">Suivant</a>
+    <?php else: ?>
+        <span>Suivant</span>
+    <?php endif; ?>
+</div>
+    <br>
+    <br>
+    <br>
 
     <?php include('../includes/footer.php')?>
     <script src="../js/plugins.js"></script>
-    <script>
-        $(window).on("load", function() {
-            $('body').addClass('loaded');
-        });
-
-        $(function(){
-
-            function setVideoSize() {
-                const vidWidth = 1280;
-                const vidHeight = 720;
-                const maxVidHeight = 400;
-                let windowWidth = window.innerWidth;
-                let newVidWidth = windowWidth;
-                let newVidHeight = windowWidth * vidHeight / vidWidth;
-                let marginLeft = 0;
-                let marginTop = 0;
-            
-                if (newVidHeight < maxVidHeight) {
-                    newVidHeight = maxVidHeight;
-                    newVidWidth = newVidHeight * vidWidth / vidHeight;
-                }
-            
-                if(newVidWidth > windowWidth) {
-                    marginLeft = -((newVidWidth - windowWidth) / 2);
-                }
-            
-                if(newVidHeight > maxVidHeight) {
-                    marginTop = -((newVidHeight - $('#tm-video-container').height()) / 2);
-                }
-            
-                const tmVideo = $('#tm-video');
-            
-                tmVideo.css('width', newVidWidth);
-                tmVideo.css('height', newVidHeight);
-                tmVideo.css('margin-left', marginLeft);
-                tmVideo.css('margin-top', marginTop);
-            }
-
-            setVideoSize();
-
-            let timeout;
-            window.onresize = function () {
-                clearTimeout(timeout);
-                timeout = setTimeout(setVideoSize, 100);
-            };
-
-            const btn = $("#tm-video-control-button");
-
-            btn.on("click", function (e) {
-                const video = document.getElementById("tm-video");
-                $(this).removeClass();
-
-                if (video.paused) {
-                    video.play();
-                    $(this).addClass("fas fa-pause");
-                } else {
-                    video.pause();
-                    $(this).addClass("fas fa-play");
-                }
-            });
-        });
-    </script>
 </body>
 </html>

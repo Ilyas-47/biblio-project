@@ -1,3 +1,15 @@
+<?php
+require_once('../connection/connection.php');
+session_start();
+
+try {
+    $req = $pdo->prepare("SELECT * FROM categories");
+    $categories=$req;
+    $categories->execute();
+} catch (PDOException $e) {
+    echo 'Error: ' . $e->getMessage();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,10 +66,9 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="nav" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Catégorie 1</a>
-                            <a class="dropdown-item" href="#">Catégorie 2</a>
-                            <a class="dropdown-item" href="#">Catégorie 3</a>
-                        </div>
+                            <?php foreach ($categories as $categorie) { ?>
+    <a class="dropdown-item" href="collect.php?id_categorie=<?php echo $categorie['id_categorie'] ?>"><?php echo $categorie['nom_categorie'] ?></a>
+                            <?php } ?>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" id="nav" href="contact.php">Contactez-nous</a>
@@ -68,7 +79,6 @@
                 </ul>
                 <div class="d-flex align-items-center">
     <?php
-    session_start();
     if (isset($_SESSION['user_email'])) {
         $user_image = isset($_SESSION['user_image']) ? $_SESSION['user_image'] : '../images/user.jpg';
         $user_name = isset($_SESSION['user_name']) ? $_SESSION['user_name'] : 'User';

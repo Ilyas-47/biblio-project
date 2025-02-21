@@ -8,7 +8,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $role = $_POST['role'];
     $default_image_url = '../images/user.png'; // Chemin de l'image par défaut
 
-    // Vérifier si une image est fournie
     $image_prfl = !empty($_FILES['image']['name']) ? $_FILES['image']['name'] : $default_image_url;
 
     $req = $pdo->prepare("INSERT INTO utilisateurs (nom, email, mot_de_passe, role, image_prfl) VALUES (:nom, :email, :mot_de_passe, :role, :image_prfl)");

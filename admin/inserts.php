@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="fr">
 <?php include('admin_nav.php')?>
@@ -15,22 +13,24 @@
                 <button type="submit" class="add">Ajouter la categorie</button>
             </form>
         </section>
-     <section>
-        <h2>Ajouter un auteur</h2>
-            <form action="insert_aut_db.php" method="POST">
+        <section>
+            <h2>Ajouter un auteur</h2>
+            <form action="insert_aut_db.php" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="auteur">Nom d'auteur:</label>
                     <input type="text" id="auteur" name="auteur" required>
                 </div>
-
                 <div class="form-group">
-                    <label for="description">description:</label>
+                    <label for="image">Image d'auteur:</label>
+                    <input type="file" id="image" name="image" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
                     <textarea id="description" name="description" rows="4" maxlength="123" required></textarea>
                 </div>
-
                 <button type="submit" class="add">Ajouter l'auteur</button>
             </form>
-</section>
+        </section>
     </main>
 </body>
 </html>

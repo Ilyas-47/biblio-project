@@ -1,4 +1,22 @@
-<!DOCTYPE html>
+<?php
+require_once('../connection/connection.php');
+
+$books = []; 
+
+try {
+    $req = $pdo->prepare("SELECT * FROM livres LIMIT 4"); 
+    $req->execute(); 
+    $books = $req->fetchAll();
+} catch (PDOException $e) {
+    echo "Error: " . $e->getMessage();
+}
+
+if (empty($books)) {
+    echo "No books found.";
+}
+
+?>
+<!DOCTYPE html> 
 <html lang="fr">
     <?php include('../includes/nav.php')?>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
@@ -81,7 +99,70 @@
         .borrow-button:hover {
             background-color:#45a049;
         }
-  </style>  <div class="container">
+        
+        .cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .card {
+        position: relative;
+        width: 220px;
+        height: 320px;
+        background: #fff;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .card .image {
+        width: 100%;
+        height: 70%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: #f5f5f5;
+    }
+
+    .card .image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .card .info {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .card .info .title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+    }
+
+    .card .info .price {
+        font-size: 14px;
+        color: #00AC7C;
+        font-weight: bold;
+    }
+
+    .card:hover .info .title {
+        color: #00AC7C;
+    }
+  </style>  
+  <div class="container">
    <div class="book-details">
     <div class="book-image">
      <img alt="Cover image of the book with a detailed illustration of the book's theme" height="400" src="https://storage.googleapis.com/a1aa/image/kfFOYWgEP7VeJ0KfLYcNXtQuXeDpfs4oNb4ljZWXd9GCICOgC.jpg" width="300"/>
@@ -121,36 +202,16 @@
                 <a href="collect.php" class="more-books-link">More books</a>
             </div>
         </div>
-        <div class="row tm-mb-90 tm-gallery">
-               
+        <div class="cards" >
+        <?php foreach ($books as $book) { ?>
+            <a href="book_details.php" <?php $book['id_livre']?>> 
             <div class="card">
-                <div class="image"><span class="text">This is a chair.</span></div>
-                  <span class="title">Cool Chair</span>
-                  <span class="price">$100</span>
-                </div>
-
-                <div class="card">
-                    <div class="image"><span class="text">This is a chair.</span></div>
-                      <span class="title">Cool Chair</span>
-                      <span class="price">$100</span>
-                    </div>
-                    <div class="card">
-                        <div class="image"><span class="text">This is a chair.</span></div>
-                          <span class="title">Cool Chair</span>
-                          <span class="price">$100</span>
-                        </div>
-                        <div class="card">
-                            <div class="image"><span class="text">This is a chair.</span></div>
-                              <span class="title">Cool Chair</span>
-                              <span class="price">$100</span>
-                            </div>
-                            <div class="card">
-                                <div class="image"><span class="text">This is a chair.</span></div>
-                                  <span class="title">Cool Chair</span>
-                                  <span class="price">$100</span>
-                                </div>
-                            
-        </div>
+                <img class="card_img" src="../images/<?php echo $book['image']; ?>" alt="<?php echo $book['titre']; ?>">
+                <p class="tip"><?php echo $book['titre']; ?></p>
+            </div>
+        <?php } ?>
+        </a>
+    </div>
     </div> 
 
     <?php include('../includes/footer.php')?>
