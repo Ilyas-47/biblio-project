@@ -33,10 +33,8 @@
             <?php
                 session_start();
 
-                // Assuming you have the role information stored in the session
                 $user_role = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : '';
 
-                // Display these links only if the user is "Chef Administratif"
                 if ($user_role == 'chef administratif') {
                     echo '<li><a href="gestion_users.php"> Gestion des utilisateurs</a></li>';
                     echo '<li><a href="inserts.php"> Insertion</a></li>';

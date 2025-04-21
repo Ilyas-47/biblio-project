@@ -1,7 +1,6 @@
 <?php 
 require_once('../connection/connection.php');
 
-// Supposons que vous avez déjà les informations de l'utilisateur connecté stockées dans une session
 session_start();
 $user_id = $_SESSION['user_id'];
 
@@ -40,7 +39,7 @@ $user = $req->fetch();
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             width: 400px;
             text-align: center;
-            position: relative; /* Allows absolute positioning of buttons */
+            position: relative; 
         }
         .admin-profile img {
             width: 120px;
@@ -72,15 +71,15 @@ $user = $req->fetch();
             border-radius: 5px;
             cursor: pointer;
             position: absolute;
-            bottom: 20px; /* Adjusted for both buttons */
+            bottom: 20px; 
         }
         .admin-profile .back-button {
             background-color: teal;
-            left: 20px; /* Positioned within the card */
+            left: 20px; 
         }
         .admin-profile .logout-button {
             background-color: #ff2424;
-            right: 20px; /* Positioned within the card */
+            right: 20px; 
         }
         .admin-profile .back-button:hover {
             background-color: darkslategray;

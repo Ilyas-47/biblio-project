@@ -28,7 +28,7 @@
         session_start();
         if (isset($_SESSION['signup_error'])) {
             echo '<p class="error_message">' . $_SESSION['signup_error'] . '</p>';
-            unset($_SESSION['signup_error']); // Supprimer le message après l'affichage
+            unset($_SESSION['signup_error']); 
         }
         ?>
             <p class="sign-up-label">

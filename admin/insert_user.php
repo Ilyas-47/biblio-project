@@ -6,7 +6,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $mot_de_passe = $_POST['mot_de_passe'];
     $role = $_POST['role'];
-    $default_image_url = '../images/user.png'; // Chemin de l'image par défaut
+    $default_image_url = '../images/user.png'; 
 
     $image_prfl = !empty($_FILES['image']['name']) ? $_FILES['image']['name'] : $default_image_url;
 

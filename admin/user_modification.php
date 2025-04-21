@@ -1,7 +1,6 @@
 <?php
 require_once('../connection/connection.php');
 
-// Retrieve user data based on ID
 $userId = $_GET['id'];
 $req = $pdo->prepare("SELECT * FROM utilisateurs WHERE id_user = :id_user");
 $req->execute(['id_user' => $userId]); 

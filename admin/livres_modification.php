@@ -1,7 +1,7 @@
 <?php
 require_once('../connection/connection.php');
 
-$book = null; // Initialisation de la variable
+$book = null; 
 
 if (isset($_GET['id_livre'])) {
     $bookId = $_GET['id_livre'];
@@ -20,21 +20,19 @@ if (isset($_GET['id_livre'])) {
     ON 
         livres.id_categorie = categories.id_categorie
     WHERE livres.id_livre = :id_livre");
-    $req->bindParam(':id_livre', $bookId, PDO::PARAM_INT); // Liaison du paramètre
+    $req->bindParam(':id_livre', $bookId, PDO::PARAM_INT); 
     $req->execute(); 
     $book = $req->fetch();
 }
 
-if ($book === null) { // Vérifier si le livre n'est pas trouvé
+if ($book === null) { 
     echo "<p>livre non trouvé.</p>";
     exit; 
 }
 
-// Fetching all categories
 $req3 = $pdo->query("SELECT nom_categorie FROM categories");
 $categories = $req3->fetchAll(PDO::FETCH_ASSOC);
 
-// Fetching ENUM values for "disponibilite"
 $req4 = $pdo->query("SHOW COLUMNS FROM livres LIKE 'disponibilite'");
 $column = $req4->fetch(PDO::FETCH_ASSOC);
 $availabilityOptions = [];
@@ -45,7 +43,6 @@ if ($column) {
     }
 }
 
-// Fetching all authors from auteur table
 $req2 = $pdo->query("SELECT nom_auteur FROM auteur");
 $auteurs = $req2->fetchAll(PDO::FETCH_ASSOC);
 

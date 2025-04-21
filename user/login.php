@@ -30,7 +30,7 @@
         session_start();
         if (isset($_SESSION['error'])) {
             echo '<p class="error_message">' . $_SESSION['error'] . '</p>';
-            unset($_SESSION['error']); // Supprimer le message après l'affichage
+            unset($_SESSION['error']); 
         }
         ?>
         </form>

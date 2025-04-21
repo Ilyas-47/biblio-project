@@ -1,13 +1,11 @@
 <?php 
 require_once('../connection/connection.php');
-// Logique de recherche pour les catégories
 $searchCategorie = isset($_GET['search_categorie']) ? '%' . $_GET['search_categorie'] . '%' : '%';
 $req1 = $pdo->prepare("SELECT * FROM categories WHERE nom_categorie LIKE :searchCategorie");
 $req1->bindParam(':searchCategorie', $searchCategorie, PDO::PARAM_STR);
 $req1->execute();
 $categories = $req1->fetchAll();
 
-// Logique de recherche pour les auteurs
 $searchAuteur = isset($_GET['search_auteur']) ? '%' . $_GET['search_auteur'] . '%' : '%';
 $req2 = $pdo->prepare("SELECT * FROM auteur WHERE nom_auteur LIKE :searchAuteur");
 $req2->bindParam(':searchAuteur', $searchAuteur, PDO::PARAM_STR);
